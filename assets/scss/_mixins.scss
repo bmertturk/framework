@@ -1,0 +1,32 @@
+@import 'variables';
+
+// Media Query Mixins
+
+@mixin media($type) {
+	@media(min-width: $type) {
+		@content;
+	}
+}
+
+@mixin min-media($res) {
+	@media(min-width: $res) {
+		@content;
+	}
+}
+
+@mixin max-media($res) {
+	@media(max-width: $res) {
+		@content;
+	}
+}
+
+@mixin between-media($minres, $maxres) {
+	@media(min-width: $minres) and (max-width: $maxres) {
+		@content;
+	}
+}
+
+@mixin colCalc($cols, $col) {
+	max-width: 100%;
+	flex: 0 0 calc(100% / #{$cols} * #{$col});
+}

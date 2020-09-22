@@ -1,0 +1,92 @@
+@import 'variables';
+@import 'mixins';
+@import 'reset';
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	padding-left: $gutter;
+	padding-right: $gutter;
+	@include media(map-get($screens, "tablet")) {
+		max-width: 720px;
+	}
+	@include media(map-get($screens, "laptop")) {
+		max-width: 960px;
+	}
+	@include media(map-get($screens, "desktop")) {
+		max-width: 1200px;
+	}
+	@include media(map-get($screens, "wide")) {
+		max-width: 1520px;
+	}
+}
+
+.container-fluid {
+	width: 100%;
+	padding-left: $gutter;
+	padding-right: $gutter;
+}
+
+.row {
+	margin-left: -$gutter;
+	margin-right: -$gutter;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+[class^="col-"] {
+	padding-left: $gutter;
+	padding-right: $gutter;
+}
+
+@for $col from 1 through $cols {
+	.col-#{$col} {
+		@include colCalc($cols, $col);
+	}
+	.col-xs-#{$col},
+	.col-sm-#{$col},
+	.col-md-#{$col},
+	.col-lg-#{$col},
+	.col-xl-#{$col} {
+		max-width: none;
+		width: 100%;
+		flex: 0 0 auto;
+	}
+}
+
+@include media(map-get($screens, "mobile")) {
+	@for $col from 1 through $cols {
+		.col-xs-#{$col} {
+			@include colCalc($cols, $col);
+		}
+	}
+}
+@include media(map-get($screens, "tablet")) {
+	@for $col from 1 through $cols {
+		.col-sm-#{$col} {
+			@include colCalc($cols, $col);
+		}
+	}
+}
+@include media(map-get($screens, "laptop")) {
+	@for $col from 1 through $cols {
+		.col-md-#{$col} {
+			@include colCalc($cols, $col);
+		}
+	}
+}
+@include media(map-get($screens, "desktop")) {
+	@for $col from 1 through $cols {
+		.col-lg-#{$col} {
+			@include colCalc($cols, $col);
+		}
+	}
+}
+@include media(map-get($screens, "wide")) {
+	@for $col from 1 through $cols {
+		.col-xl-#{$col} {
+			@include colCalc($cols, $col);
+		}
+	}
+}
