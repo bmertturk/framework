@@ -1,5 +1,7 @@
 export const Helpers = {
-	init() {
-		console.log('helpers loaded');
+
+	getHtml(html) {
+		return fetch(html).then(response => response.text());
 	}
+
 }
